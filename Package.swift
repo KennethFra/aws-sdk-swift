@@ -4,14 +4,12 @@ import class Foundation.FileManager
 import class Foundation.JSONDecoder
 import struct Foundation.URL
 import struct Foundation.Data
-import struct ObjectiveC.ObjCBool
 
 let rootURL = URL(fileURLWithPath: #file).deletingLastPathComponent()
 let filterFileURL = rootURL.appendingPathComponent("filter.json")
 let releaseURL = rootURL.appendingPathComponent("release")
 
-var isDirectory = ObjCBool(true)
-if !FileManager.default.fileExists(atPath: releaseURL.path, isDirectory: &isDirectory) || !isDirectory.boolValue {
+if !FileManager.default.fileExists(atPath: releaseURL.path) {
     fatalError("Please check out a branch using a release tag. [git checkout -b v0.2.2 0.2.2]")
 }
 
